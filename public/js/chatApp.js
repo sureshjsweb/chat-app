@@ -1,17 +1,16 @@
 class ChatApp {
+    baseUrl = 'http://localhost:3000';
     constructor() {
         this.bindEvents();
     }
 
     bindEvents() {
-        setTimeout(function () {
-            const addUserChatBtn = document.querySelector('#addUserChatBtn');
-            const addUserChatTxt = document.querySelector('#addUserChatTxt');
-            let self = this;
-            addUserChatBtn.addEventListener('click', () => {
-                self.addChatUser(addUserChatTxt.value);
-            });
-        }.bind(this), 1000);
+        let self = this;
+        const addUserChatBtn = document.querySelector('#addUserChatBtn');
+        const addUserChatTxt = document.querySelector('#addUserChatTxt');
+        addUserChatBtn.addEventListener('click', () => {
+            self.addChatUser(addUserChatTxt.value);
+        });
     }
 
     addChatUser(userName) {
@@ -21,17 +20,15 @@ class ChatApp {
         }
         chats[userName] = [];
         localStorage.setItem('USER_CHATS', JSON.stringify(chats));
+        this.openChatUsers(userName);
     }
 
-    openChatUsers() {
-        let baseUrl = 'http://localhost:3000/';
-        for (const [key, value] of Object.entries(JSON.parse(localStorage.getItem('USER_CHATS')))) {
-            let winRef = window.open(`${baseUrl}?userName=${value.name}`, '_blank');
-            this.cloneChatTemplate(value.name, userInfo, winRef);
-        }
+    openChatUsers(userName) {
+        let winRef = window.open(`${this.baseUrl}/${userName}`, '_blank');
+        this.cloneChatTemplate(userName, winRef);
     }
 
-    cloneChatTemplate(userName, userInfo, winRef) {
+    cloneChatTemplate(userName, winRef) {
         const chatLayout = document.querySelector("#chatlayout");
         const copyChatLayout = chatLayout.cloneNode(true);
         copyChatLayout.style.display = "block";
@@ -44,6 +41,5 @@ class ChatApp {
 }
 
 function createChatApp() {
-    console.log('its onload');
     const chatApp = new ChatApp();
 }

@@ -52,8 +52,7 @@ function createNewChat(userName) {
     document.title = `${userName}'s chat room`;
 }
 
-document.onload = function () {
-    const queryString = window.location.search;
-    createNewChat(queryString.getItem('userName'));
-    console.log('QS: ', queryString);
+function collectUserInfo() {
+    let url = window.location.href.split('/');
+    createNewChat(url[url.length - 1]);
 }

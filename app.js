@@ -5,7 +5,11 @@ const port = 3000;
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', (req, res) => {
-    res.sendFile('index.html');
+    res.sendFile(__dirname + '/index.html');
+});
+
+app.get('/:userName', (req, res) => {
+    res.sendFile('chat.html', { root: __dirname + '/public/' });
 });
 
 app.listen(port, () => {
