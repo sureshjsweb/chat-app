@@ -2,14 +2,15 @@
 <html>
   <head>
     <title>Hello, welcome to the world of javascript</title>
+    <script src="./js/chatApp.js" defer></script>
   </head>
-  <body>
+  <body onload="createChatApp()">
     <div id="chatlayout" style="display: none">
       <label>Display Name: <input type="text" id="displayName" /></label>
     </div>
-    <button id="openChatWindows">Open Chat Windows</button>
-    <script type="module" src="./constants.js"></script>
-    <script type="module" src="./js/chatQueue.js"></script>
-    <script type="module" src="./js/chatOpener.js"></script>
+    <div>
+      <input type="text" id="addUserChatTxt"/>
+      <button id="addUserChatBtn">Add User</button>
+    </div>
   </body>
 </html>

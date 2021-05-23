@@ -1,1 +1,0 @@
-export const CHAT_HISTORY = 'CHAT_HISTORY';
