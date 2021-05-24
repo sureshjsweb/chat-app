@@ -1,0 +1,30 @@
+body {
+    background-color: gainsboro;
+  }
+  input,
+  select {
+    padding: 5px;
+  }
+  .searchContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .chatlayout {
+    padding: 30px;
+  }
+  .search {
+    width: 85%;
+  }
+  .chatHistory {
+    height: 350px;
+  }
+  .msgInput {
+    width: 100%;
+  }
+  .msgSendBtn {
+    display: inline;
+    position: absolute;
+    right: 30px;
+    bottom: 52px;
+  }

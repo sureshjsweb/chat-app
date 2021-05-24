@@ -36,9 +36,9 @@ class Chat extends User {
     }
 
     bindEvents() {
-        let displayName = document.querySelector("#displayName");
+        let displayName = document.querySelector(".displayName");
         displayName.addEventListener('change', function (event) {
-            console.log(event.target.value);
+            this.setName(event.target.value);
         });
     }
 }
