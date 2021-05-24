@@ -29,7 +29,7 @@ class ChatApp {
     }
 
     cloneChatTemplate(userName, winRef) {
-        const chatLayout = document.querySelector("#chatlayout");
+        const chatLayout = document.querySelector(".chatlayout");
         const copyChatLayout = chatLayout.cloneNode(true);
         copyChatLayout.style.display = "block";
         winRef.document.body.appendChild(copyChatLayout);

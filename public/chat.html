@@ -3,10 +3,66 @@
   <head>
     <title></title>
     <script src="./js/chat.js" defer></script>
+    <style>
+      body {
+        background-color: gainsboro;
+      }
+      input,
+      select {
+        padding: 5px;
+      }
+      .searchContainer {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+      .chatlayout {
+        padding: 30px;
+      }
+      .search {
+        width: 85%;
+      }
+      .chatHistory {
+        height: 350px;
+      }
+      .msgInput {
+        width: 100%;
+      }
+      .msgSendBtn {
+        display: inline;
+        position: absolute;
+        right: 30px;
+        bottom: 52px;
+      }
+    </style>
   </head>
   <body onload="collectUserInfo()">
-    <div id="chatlayout" style="display: none">
-      <label>Display Name: <input type="text" id="displayName" /></label>
+    <div class="chatlayout">
+      <div>
+        <label
+          ><bold>Display Name: </bold
+          ><input
+            type="text"
+            class="displayName"
+            placeholder="Please enter your name"
+        /></label>
+      </div>
+      <br />
+      <div>
+        <div class="searchContainer">
+          <input type="text" class="search" placeholder="Search Messages" />
+          <select name="filter">
+            <option>Filter</option>
+          </select>
+        </div>
+      </div>
+      <br />
+      <hr />
+      <div>
+        <div class="chatHistory"></div>
+        <input type="text" class="msgInput" placeholder="Type a new message" />
+        <button class="msgSendBtn">Send</button>
+      </div>
     </div>
   </body>
 </html>

@@ -27,7 +27,7 @@ class Chat extends User {
     }
 
     pushChat(chat) {
-        this.chatHistory.push(chat);
+        this.chatHistory.push({ chat, sessionId: this.sessionId, timing: new Date() });
     }
 
     retreiveChat() {
