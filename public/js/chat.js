@@ -18,16 +18,16 @@ class Chat extends User {
         this.retreiveChat();
     }
 
-    getAllUserChats() {
+    setAllUserChatHistory(chats) {
+        localStorage.setItem('USER_CHATS', JSON.stringify(chats));
+    }
+
+    getAllUserChatsHistory() {
         return JSON.parse(localStorage.getItem('USER_CHATS'));
     }
 
     getUserChatHistory() {
         return JSON.parse(localStorage.getItem('USER_CHATS'))[this.userName];
-    }
-
-    setAllUserChatHistory(chats) {
-        localStorage.setItem('USER_CHATS', JSON.stringify(chats));
     }
 
     pushChat(chat) {
@@ -58,7 +58,7 @@ class Chat extends User {
     }
 
     saveChat() {
-        let allChats = this.getAllUserChats();
+        let allChats = this.getAllUserChatsHistory();
         allChats[this.userName] = this.chatHistory;
         this.setAllUserChatHistory(allChats);
     }
