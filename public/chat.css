@@ -16,7 +16,7 @@ body {
   .search {
     width: 85%;
   }
-  .chatHistory {
+  .chatMsgArea {
     height: 350px;
   }
   .msgInput {

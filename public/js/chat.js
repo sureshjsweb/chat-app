@@ -18,16 +18,49 @@ class Chat extends User {
         this.retreiveChat();
     }
 
+    getAllUserChats() {
+        return JSON.parse(localStorage.getItem('USER_CHATS'));
+    }
+
     getUserChatHistory() {
         return JSON.parse(localStorage.getItem('USER_CHATS'))[this.userName];
     }
 
-    setUserChatHistory(chats) {
+    setAllUserChatHistory(chats) {
         localStorage.setItem('USER_CHATS', JSON.stringify(chats));
     }
 
     pushChat(chat) {
-        this.chatHistory.push({ chat, sessionId: this.sessionId, timing: new Date() });
+        this.chatHistory.push({ message: chat, sessionId: this.sessionId, timing: new Date() });
+        this.showChat();
+        this.saveChat();
+    }
+
+    showChat() {
+        let self = this;
+        let chat = this.chatHistory[this.chatHistory.length - 1];
+
+        const chatMsg = document.querySelector(".chatMsg");
+        const chatMsgLayout = chatMsg.cloneNode(true);
+        chatMsgLayout.style.display = "block";
+
+        let userInput = chatMsgLayout.querySelector(".chatUser");
+        userInput.textContent = this.userName;
+
+        let chatTime = chatMsgLayout.querySelector(".chatTime");
+        chatTime.textContent = chat.timing;
+
+        let chatMessage = chatMsgLayout.querySelector(".chatMessage");
+        chatMessage.textContent = chat.message;
+
+        const chatMsgArea = document.querySelector(".chatMsgArea");
+        chatMsgArea.appendChild(chatMsgLayout);
+    }
+
+    saveChat() {
+        let allChats = this.getAllUserChats();
+        allChats[this.userName] = this.chatHistory;
+        this.setAllUserChatHistory(allChats);
     }
 
     retreiveChat() {
@@ -36,9 +69,11 @@ class Chat extends User {
     }
 
     bindEvents() {
-        let displayName = document.querySelector(".displayName");
-        displayName.addEventListener('change', function (event) {
-            this.setName(event.target.value);
+        let self = this;
+        let msgSendBtn = document.querySelector(".msgSendBtn");
+        let msgInput = document.querySelector(".msgInput");
+        msgSendBtn.addEventListener('click', function (event) {
+            self.pushChat(msgInput.value);
         });
     }
 }
