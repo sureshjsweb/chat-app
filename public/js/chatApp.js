@@ -18,7 +18,7 @@ class ChatApp {
         if (!chats) {
             chats = {};
         }
-        chats[userName] = [];
+        chats[userName] = chats[userName].length ? chats[userName] : [];
         localStorage.setItem('USER_CHATS', JSON.stringify(chats));
         this.openChatUsers(userName);
     }

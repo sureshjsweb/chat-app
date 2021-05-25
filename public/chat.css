@@ -28,3 +28,9 @@ body {
     right: 30px;
     bottom: 52px;
   }
+  .chatUser {
+    font-weight: bolder;
+  }
+  .chatMsg {
+    background-color: white;
+  }

@@ -32,13 +32,12 @@ class Chat extends User {
 
     pushChat(chat) {
         this.chatHistory.push({ message: chat, sessionId: this.sessionId, timing: new Date() });
-        this.showChat();
+        this.showChat(this.chatHistory[this.chatHistory.length - 1]);
         this.saveChat();
     }
 
-    showChat() {
+    showChat(chat) {
         let self = this;
-        let chat = this.chatHistory[this.chatHistory.length - 1];
 
         const chatMsg = document.querySelector(".chatMsg");
         const chatMsgLayout = chatMsg.cloneNode(true);
@@ -48,7 +47,8 @@ class Chat extends User {
         userInput.textContent = this.userName;
 
         let chatTime = chatMsgLayout.querySelector(".chatTime");
-        chatTime.textContent = chat.timing;
+        let t = new Date(chat.timing);
+        chatTime.textContent = t.getHours() + ':' + t.getMinutes();
 
         let chatMessage = chatMsgLayout.querySelector(".chatMessage");
         chatMessage.textContent = chat.message;
@@ -64,8 +64,12 @@ class Chat extends User {
     }
 
     retreiveChat() {
+        let self = this;
         this.chatHistory = this.getUserChatHistory();
         this.bindEvents();
+        this.chatHistory.forEach((chat, index) => {
+            self.showChat(chat);
+        });
     }
 
     bindEvents() {
